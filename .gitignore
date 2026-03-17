@@ -1,0 +1,28 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+env/
+paddle_env/
+clean_env/
+stable_env/
+
+# Mac system files
+.DS_Store
+
+# Secrets / API keys
+*.json
+vision_key.json
+
+# Large folders not needed in repo
+raw_images/
+processed_images/
+
+# Output files (optional)
+*.csv
+
+# Logs
+*.log
