@@ -1,61 +1,38 @@
-# AI-Powered Receipt OCR & Expense Analytics Pipeline
-Built as part of a Data Analyst technical project demonstrating automation, data processing, and analytics.
+# AI-Powered Receipt Data Pipeline & Expense Analytics System
+
 ## Overview
 
-This project automates the extraction of structured expense data from receipt images using OCR and Python automation. It transforms unstructured receipt images into a clean dataset that can be used for business analytics and financial tracking.
+This project automates the extraction of structured expense data from receipt images using OCR and Python. It converts unstructured receipt images into a clean dataset that can be used for financial tracking and analytics.
+
+The system is designed to reduce manual data entry effort and improve operational efficiency for businesses such as restaurants and small enterprises.
 
 ---
 
-## Business Problem
+## Problem Statement
 
-Restaurants and small businesses receive daily receipts for inventory and operational expenses. These are often stored as images, making manual tracking inefficient, time-consuming, and error-prone.
+Many businesses manually enter receipt data into spreadsheets, which is time-consuming and error-prone. This project automates that process by extracting key information directly from receipt images.
 
 ---
 
 ## Solution
 
-This pipeline automates the entire workflow:
+The system:
 
-- Extracts text from receipt images using OCR
-- Identifies key fields like store name, invoice date, total amount, and payment method
-- Cleans and structures the data
-- Generates a dataset ready for analytics
-
----
-## Why This Matters
-
-This system reduces manual effort in expense tracking and enables businesses to make data-driven decisions based on structured financial data.
+- Extracts text from receipt images using Google Vision OCR
+- Processes and structures the data using Python
+- Automates execution using Flask API + Docker
+- Generates a clean dataset ready for analysis
 
 ---
 
-## Architecture
+## Features
 
-```
-Receipt Images
-      ↓
-Scheduled Automation (n8n)
-      ↓
-Flask API Trigger
-      ↓
-Python OCR Processing
-      ↓
-Data Cleaning & Transformation
-      ↓
-Structured Expense Dataset
-      ↓
-Analytics Dashboard
-```
-
----
-
-## Key Features
-
-- Automated OCR extraction from images
-- Python-based ETL pipeline
-- Scheduled workflow using n8n
+- OCR-based data extraction
+- Automated pipeline execution
 - Card vs Cash detection
-- Automatic file handling (processed vs raw)
-- Clean dataset generation for analysis
+- Multi-image receipt handling
+- Duplicate processing prevention
+- Analytics-ready dataset output
 
 ---
 
@@ -63,48 +40,140 @@ Analytics Dashboard
 
 - Python (Pandas, Regex)
 - Flask API
-- Google Vision OCR
-- n8n (Workflow Automation)
-- Excel / Tableau (for analytics)
+- Google Cloud Vision API (OCR)
+- Docker (Containerization)
+- Excel / Power Query (Analytics)
 
 ---
 
-## Sample Output
-
-The pipeline generates a structured dataset:
-
-| Store Name | Date | Total | Card Used |
-|-----------|------|------|----------|
-| SUBZI MANDI | 2026-03-06 | 126.0 | Cash |
-
+## Project Structure
 
 ```
-sample_output/bills_output_clean_final.csv
+receipt-automation-system/
+│
+├── process_bills.py
+├── run_pipeline.py
+├── Dockerfile
+├── run.sh / run.bat
+├── requirements.txt
+│
+├── raw_images/
+├── processed_images/
+│
+└── bills_output_clean_final1.csv
 ```
 
 ---
 
-## Business Insights (Potential)
+## How to Run (For Users)
 
-- Daily expense tracking
-- Vendor-wise spend analysis
-- Cash vs Card usage trends
-- High expense categories
-- Monthly spend patterns
+### Step 1: Install Docker
+Download and install Docker Desktop:  
+https://www.docker.com/products/docker-desktop  
+
+---
+
+### Step 2: Download Project
+Download this repository as a ZIP and extract it.
+
+---
+
+### Step 3: Set Up Google Vision API (One-Time Setup)
+
+1. Go to: https://console.cloud.google.com  
+2. Create a new project  
+3. Enable **Vision API**  
+4. Go to **IAM & Admin → Service Accounts**  
+5. Create a service account  
+6. Generate a key → Download JSON file  
+7. Rename the file to:
+
+```
+vision_key.json
+```
+
+8. Place it inside the project folder
+
+---
+
+### Step 4: Add Receipt Images
+
+Place all receipt images inside:
+
+```
+raw_images/
+```
+
+---
+
+### Step 5: Run the System
+
+#### On Mac:
+```
+./run.sh
+```
+
+#### On Windows:
+Double-click:
+```
+run.bat
+```
+
+---
+
+### Step 6: Execute Pipeline
+
+Open in browser:
+
+```
+http://localhost:5001/run-pipeline
+```
+
+---
+
+### Step 7: Get Output
+
+Processed data will be saved in:
+
+```
+bills_output_clean_final1.csv
+```
+
+Processed images will be moved to:
+
+```
+processed_images/
+```
+
+---
+
+## Notes
+
+- No Python setup required — everything runs via Docker  
+- Each user must use their own Google Vision API key  
+- Initial Google Cloud usage includes free credits  
+
+---
+
+## Business Impact
+
+- Reduces manual data entry effort by ~70–80%  
+- Improves accuracy of financial data  
+- Enables faster reporting and analytics  
+- Scalable for daily business operations  
 
 ---
 
 ## Future Improvements
 
-- Cloud deployment (AWS/GCP)
-- WhatsApp API integration
+- Cloud deployment (AWS / GCP)
+- Web-based upload interface
 - Real-time processing
-- Dashboard UI for business users
-- Database storage (PostgreSQL)
+- Dashboard for business insights
 
 ---
 
 ## Author
 
 Aishwarya Arul  
-MS Business Analytics | Data Analyst | AI + Automation Enthusiast
+MS Business Analytics  
